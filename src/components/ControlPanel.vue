@@ -7,24 +7,39 @@ export default {
     },
     data() {
         return {
-            text: "1000",
+            solInput: "1144"
         }
     },
     watch: {
-        
+        solInput(){
+            this.delayLoad()
+        }
     },
     methods: {
         ...mapActions(useSolStore, ['updateSol']),
-        baba() {
-            this.updateSol(this.text)
-            console.log("click")
-        }
+        delayLoad() {
+            setTimeout(() => {
+                this.updateSol(this.solInput)
+            }, 500)
+        },
+    },
+    mounted() {
+        this.updateSol(this.solInput)
     }
 }
 
 
 </script>
 <template>
-    <input type="text" v-model="text">
-    <button @click="baba">Enter</button>
+    <div> 
+        <p>{{ solInput }}</p>
+        <label for="customRange3" class="form-label">Sol</label>
+        <input type="range" class="form-range slajder" min="0" max="3920" id="customRange3" v-model="solInput">
+    </div>
 </template>
+
+<style>
+.slajder {
+    width: 100%;
+    }
+</style>
