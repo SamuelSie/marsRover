@@ -1,14 +1,32 @@
 <script>
-import { imageUrl } from '../utils/fetch';
+import { imageUrl } from '../utils/fetch'
+import { mapStores, mapState } from 'pinia'
+import { useSolStore } from '../stores/sol'
 export default {
+    props: {
+        camera: {
+            type: String,
+            required: true,
+        }
+    },
+    computed: {
+        ...mapStores(useSolStore),
+        ...mapState(useSolStore, ['sol']),
+    },
     data() {
         return {
             imgUrl: "",
         }
     },
-    async mounted() {
-        this.imgUrl = await imageUrl()
-    }
+    watch: {
+        async sol() {
+            console.log(this.sol)
+            this.imgUrl = await imageUrl(this.sol, this.camera)
+        }
+
+    },
+    methods: {
+    },
 }
 
 </script> 

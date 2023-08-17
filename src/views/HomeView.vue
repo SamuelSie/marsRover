@@ -16,9 +16,26 @@ export default {
 </script>
 
 <template>
-  <main>
-    <RoverImage />
+  <div class="container">
+  <header>
     <ControlPanel />
-
-  </main>
+  </header>
+  <main class="row">
+    <RoverImage class="col" camera="fhaz"/>
+    <RoverImage class="col" camera="rhaz"/>
+    <RoverImage class="col" camera="mast"/>
+  </main>  
+</div>
 </template>
+
+<style>
+
+.img-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%
+}
+.item {
+  flex: auto;
+}
+</style>

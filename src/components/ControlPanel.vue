@@ -7,16 +7,18 @@ export default {
     },
     data() {
         return {
-            text: "p",
+            text: "1000",
         }
     },
     watch: {
-        text() {
-            this.updateSol(this.text)
-        }
+        
     },
     methods: {
         ...mapActions(useSolStore, ['updateSol']),
+        baba() {
+            this.updateSol(this.text)
+            console.log("click")
+        }
     }
 }
 
@@ -24,5 +26,5 @@ export default {
 </script>
 <template>
     <input type="text" v-model="text">
-    
+    <button @click="baba">Enter</button>
 </template>
